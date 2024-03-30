@@ -4,6 +4,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
 import Replies from './components/Replies';
+import './App.css';
 
 //Login.js and Register.js filesa are the authentication pages of the web application.
 // Home.js file respresents the dashboard page show after authentication. It allows users to

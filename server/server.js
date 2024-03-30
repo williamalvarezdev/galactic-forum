@@ -15,7 +15,7 @@ app.get("/api", (req, res) => {
 /*CREATING NEW USERS */
 /*NOTE I WILL CHANGE THIS SO IT WORKS WITH DATABASE */
 // Array containt all existing users
-const user = [];
+const users = [];
 
 const generatedId = () => Math.random().toString(36).substring(2,10);
 
@@ -23,6 +23,8 @@ const generatedId = () => Math.random().toString(36).substring(2,10);
 app.post('/api/register', async (req, res) => {
     const { email, password, username } = req.body;
     const id = generatedId();
+
+    console.log({email, password, username, id});
 
     //No duplicates, validation
     const result = users.filter(
@@ -60,37 +62,13 @@ app.post("/api/login", (req, res) => {
             error_message: "Incorrect credentials",
         })
     }
+    //if user exists
     res.json({
         message: "login successfully",
         id: result[0].id,
     });
 });
 
-
-
-// const handleSubmit = (e) => {
-//     e.preventDefault();
-//     //Below tridggers functions
-//     signup();
-//     setEmail("");
-//     setUsername("");
-//     setPassword("");
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.listen(Port, () => {
     console.log(`Server listening on port ${Port}`);
 });
-

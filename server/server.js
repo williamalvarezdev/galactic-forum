@@ -17,10 +17,10 @@ const client = new MongoClient(uri);
 async function run() {
   try {
     const database = client.db('forumchain');
-    const movies = database.collection('username');
+    const username = database.collection('username');
     // Query for a movie that has the title 'Back to the Future'
     const query = { user: 'test0' };
-    const movie = await username.findOne(query);
+    const username = await username.findOne(query);
     console.log(username);
   } finally {
     // Ensures that the client will close when you finish/error

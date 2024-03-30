@@ -16,12 +16,12 @@ const uri = "mongodb+srv://williamalvarezdev:Qrfv8QSmmfQrreHx@cluster0.iufiwin.m
 const client = new MongoClient(uri);
 async function run() {
   try {
-    const database = client.db('sample_mflix');
-    const movies = database.collection('movies');
+    const database = client.db('forumchain');
+    const movies = database.collection('username');
     // Query for a movie that has the title 'Back to the Future'
-    const query = { title: 'Back to the Future' };
-    const movie = await movies.findOne(query);
-    console.log(movie);
+    const query = { user: 'test0' };
+    const movie = await username.findOne(query);
+    console.log(username);
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();

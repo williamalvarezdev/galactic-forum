@@ -47,27 +47,35 @@ const loginUser = () => {
         <main className='login'>
             <h1 className='loginTitle'>Log into your account</h1>
             <form className='loginForm' onSubmit={ handleSubmit }>
-                <label htmlFor='email'>Email address</label>
-                <input
-                    type='text'
-                    name='email'
-                    id='email'
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <label htmlFor='password'>Password</label>
-                <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+              <div className='fields'>
+                <div className='email'>
+                  <label htmlFor='email'>Email address</label>
+                  <input
+                      type='text'
+                      name='email'
+                      id='email'
+                      placeholder='Type your email here'
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className='password'>
+                  <label htmlFor='password'>Password</label>
+                  <input
+                      type='password'
+                      name='password'
+                      id='password'
+                      placeholder='Type your password here'
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </div>
                 <button className="loginBtn">Sign In</button>
                 <p>
-                    Don't have an account? <Link to='/register'>Create One</Link>
+                    Don't have an account? <Link to='/register'>Create one</Link>
                 </p>
             </form>
         </main>

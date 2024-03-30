@@ -24,7 +24,7 @@ const Home = () => {
 
     //retrievs all the post available within app and saves into threadlist datastructure
     const createThread = () => {
-        fetch("http://localhost:5000/api/create/thread", {
+        fetch("http://localhost:4000/api/create/thread", {
             method: "POST",
             body: JSON.stringify({
                 thread,
@@ -78,12 +78,12 @@ const Home = () => {
                     <div className = 'thread__item' key={thread.id}>
                         <p>{thread.title}</p>
                         <div className='react_container'>
-                        <Likes numberOfLikes={thread.likes.length} threadId={thread.id} />
+                        {/* <Likes numberOfLikes={thread.likes.length} threadId={thread.id} />
                         <Comments
                             numberOfComments={thread.replies.length}
                             threadId={thread.id}
                             title={thread.title}
-                            />
+                            /> */}
                         </div>
                     </div>
                     ))}

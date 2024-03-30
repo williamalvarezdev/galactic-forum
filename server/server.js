@@ -48,8 +48,7 @@ app.post('/api/register', async (req, res) => {
     })
 });
 
-
-
+/*LOGIN AND SOME LEVEL OF SECURITY CHECKS */
 app.post("/api/login", (req, res) => {
     const { email, password } = req.body;
     //checks if user exist
@@ -68,6 +67,38 @@ app.post("/api/login", (req, res) => {
         id: result[0].id,
     });
 });
+
+
+/*CREATING AND RETRIEVING POST THREADS WITHIN APPLICATION */
+app.post("/api/create/thread", async (req, res) => {
+    const { thread, userId} = req.body;
+    const threadId = generatedId();
+
+    console.log({ thread, userId, threadId });
+});
+
+/* SAVING POST AND SEND ALL AVAILABLE POST TO THE CLIENT SIDE */
+const threadList = [];
+
+app.post("/api/create/thread", async (req, res) => {
+    const { thread, userId } = req.body;
+    const threadId = generatedId();
+
+    //Add post to array or db
+    threadList.unshift({
+        id: threadId,
+        title: thread,
+        userId,
+        replies: [],
+        likes: [],
+    });
+
+    res.json({
+        message: "Thread created successfully!",
+        threads: threadList,
+    })
+})
+
 
 app.listen(Port, () => {
     console.log(`Server listening on port ${Port}`);

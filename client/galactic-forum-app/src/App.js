@@ -5,8 +5,8 @@ function App() {
   const [backendData, setBackendData] = useState([{}])
 
   useEffect(() =>{
-    fetch("/api").then((response) =>response.json()).then(
-      data => {
+    fetch("http://localhost:4000/api/").then((response) =>response.json()).then(
+      data=> {
         setBackendData(data)
       }
     )

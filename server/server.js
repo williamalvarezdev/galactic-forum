@@ -99,7 +99,3 @@ app.post("/api/create/thread", async (req, res) => {
     })
 })
 
-
-app.listen(Port, () => {
-    console.log(`Server listening on port ${Port}`);
-});

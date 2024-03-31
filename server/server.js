@@ -1,11 +1,10 @@
 
 import express from 'express'
+import cors from 'cors'
 import mongoose from 'mongoose'
 import { DB_URI, host, PORT } from './config/environment.js'
 import router from './config/router.js'
 
-const express = require('express');
-const cors = require('cors');
 const app = express();
 const Port = 4000;
 

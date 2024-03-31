@@ -4,19 +4,24 @@ import Nav from './Nav';
 
 
 const Home = () => {
-    const [thread, setThread] = useState("");
+    //Added list this way we can hold all the posts
+    const [thread, setThread] = useState([]);
 
     const navigate = useNavigate();
 
     const [threadList, setThreadList] = useState([]);
 
-    //Verification if use is authenticated
+    //Verification if use is authenticated, ensuring is protected
     useEffect(() => {
         const checkUser = () => {
             if(!localStorage.getItem("_id")) {
                 navigate("/");
             } else {
                 console.log("Authenticated")
+                fetch("http://localhost:4000/api/all/threads")
+                    .then((res) => res.json())
+                    .then((data) => setThreadList(data.threads))
+                    .catch((err) => console.error(err))
             }
         };
         checkUser();
@@ -47,7 +52,8 @@ const Home = () => {
      const handleSubmit = (e) => {
         e.preventDefault();
         console.log({ thread });
-         createThread();
+        //calls the function
+        createThread();
         setThread("");
     };
  
@@ -78,12 +84,12 @@ const Home = () => {
                     <div className = 'thread__item' key={thread.id}>
                         <p>{thread.title}</p>
                         <div className='react_container'>
-                        {/* <Likes numberOfLikes={thread.likes.length} threadId={thread.id} />
+                        <Likes numberOfLikes={thread.likes.length} threadId={thread.id} />
                         <Comments
                             numberOfComments={thread.replies.length}
                             threadId={thread.id}
                             title={thread.title}
-                            /> */}
+                            />
                         </div>
                     </div>
                     ))}

@@ -38,7 +38,7 @@ const signUp = () => {
                 alert(data.error_message);
             } else {
                 alert("Account created successfully!");
-                navigate("/");
+                navigate("/"); //Updated -> dashboard
             }
         })
         .catch(err => console.error(err));

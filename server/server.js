@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const Port = 4000;
+const PORT = 4000;
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -55,8 +55,8 @@ app.post("/api/login", (req, res) => {
     let result = users.filter(
         user => user.email === email && user.password === password
     );
-    // if user does not exist
-    if(result.length === 1){
+    // if user does not exist, I found the typo YAY!
+    if(result.length !== 1){
         return res.json({
             error_message: "Incorrect credentials",
         })
@@ -99,3 +99,12 @@ app.post("/api/create/thread", async (req, res) => {
     })
 })
 
+app.get("/api/create/thread", async (req, res) =>{
+    res.json({
+        threads: threadList,
+    })
+})
+
+app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`)
+})

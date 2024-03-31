@@ -14,7 +14,7 @@ const Login = () => {
     };
 
     // React Router's userNavigate hook
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
 const loginUser = () => {
 
@@ -30,18 +30,19 @@ const loginUser = () => {
         },
 
     })
+    //Idk why, this part was a real pain, I fixed but still don't how
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.error_message) {
+            alert(data.error_message);
+        } else {
+            alert(data.message);
+            navigate("/dashboard");
+            localStorage.setItem("_id", data.id);
+        }
+    })
+    .catch((err) => console.error(err));
 
-        .then((res) => res.json())
-        .then((data) => {
-            if (data.error_message) {
-                alert(data.error_message);
-            } else {
-                alert(data.message);
-                navigate("/dashboard");
-                localStorage.setItem("_id", data.id);
-            }
-        })
-        .catch((err) => console.error(err));
 };
 
     return (

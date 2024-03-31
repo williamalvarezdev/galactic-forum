@@ -18,7 +18,7 @@ const __dirname = dirname(__filename)
 const app = express()
 
 const startServer = async () => {
-=======
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());

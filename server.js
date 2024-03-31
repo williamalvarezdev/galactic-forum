@@ -1,12 +1,10 @@
 
 import express from 'express'
 import mongoose from 'mongoose'
-import { DB_URI, host, PORT } from './config/environment.js'
-import router from './config/router.js'
+import { DB_URI, host, PORT } from './server/config/environment.js'
+import router from './server/config/router.js'
 import cors from 'cors'
-
 const app = express();
-const Port = 4000;
 
 
 import path, { dirname } from 'path'
@@ -18,13 +16,6 @@ const __dirname = dirname(__filename)
 const startServer = async () => {
 
 
-/*CREATING AND RETRIEVING POST THREADS WITHIN APPLICATION */
-app.post("/api/create/thread", async (req, res) => {
-    const { thread, userId} = req.body;
-    const threadId = generatedId();
-
-    console.log({ thread, userId, threadId });
-});
 
 /* SAVING POST AND SEND ALL AVAILABLE POST TO THE CLIENT SIDE */
 // Assuming threadList is declared and initialized somewhere in your code
@@ -32,6 +23,7 @@ const threadList = [];
 
 // POST endpoint to create a thread
 app.post("/api/create/thread", async (req, res) => {
+
     const { thread, userId } = req.body;
     const threadId = generatedId();
 
@@ -77,15 +69,14 @@ app.get("/api/thread/:threadId/likes", (req, res) => {
   try {
     await mongoose.connect(DB_URI)
     console.log('Database has connected successfully')
-
+    app.use(cors());
     app.use(express.json())
     app.use('/api', router)
 
-    // ** New lines **
-    app.use(express.static(path.join(__dirname, 'client', 'build')))
+    app.use(express.static(path.join(__dirname, 'client', 'galactic-forum-app', 'build')))
   
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+      res.sendFile(path.join(__dirname, 'client', 'galactic-forum-app','build', 'index.html'))
     })
     app.use((req, _res, next) => {
       console.log(`Request received: ${req.method} - ${req.url}`)

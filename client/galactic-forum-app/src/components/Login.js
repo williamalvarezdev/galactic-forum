@@ -7,12 +7,14 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({ email, password });
         loginUser();
         setEmail("");
         setPassword("");
     };
 
+const setToken = (token) => {
+    window.localStorage.setItem("token", token)
+}
     // React Router's userNavigate hook
 const navigate = useNavigate();
 
@@ -27,6 +29,7 @@ const loginUser = () => {
 
         headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
         },
 
     })
@@ -36,8 +39,8 @@ const loginUser = () => {
             if (data.error_message) {
                 alert(data.error_message);
             } else {
-                alert(data.message);
                 navigate("/dashboard");
+                setToken(data.token)
                 localStorage.setItem("_id", data.id);
             }
         })

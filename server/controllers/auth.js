@@ -24,7 +24,8 @@ export const loginUser = async (req, res) => {
     const token = jwt.sign({ sub: userToLogin._id, username: userToLogin.username }, SECRET, { expiresIn: '7 days' })
     return res.status(200).json({ 
       message: `Welcome back ${userToLogin.username}`,
-      token
+      token: token,
+      id: userToLogin._id
     })
   } catch (err) {
     console.log(err)

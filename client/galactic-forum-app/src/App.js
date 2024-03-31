@@ -11,8 +11,6 @@ import './App.css';
 //Replies.js file displaus the response on each post and allows users to reply  to the post thread
 // The Nav.js is the navigation bar we will configure
 
-
-
 function App() {
   return (
     <div>
